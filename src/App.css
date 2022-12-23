@@ -1,0 +1,29 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.filed{
+  position: relative;
+  width: 1000px;
+  height: 1000px;
+  border: 1px solid red;
+  overflow: hidden;
+}
+
+.dot{
+  width: 8px;
+  height: 8px;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.snowAreas{
+  position: absolute;
+  border-radius: 50%;
+  background: red;
+  opacity: .4;
+}
