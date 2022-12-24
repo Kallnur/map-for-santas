@@ -9,7 +9,7 @@ const CanvasMap = () => {
     const reduceSize = 10;
 
     const getData = async () => {
-      await axios.get("https://datsanta.dats.team/json/map/faf7ef78-41b3-4a36-8423-688a61929c08.json")
+      await axios.get("(https://********************************************.json")
          .then(data => {
              setData(data.data)
          })

@@ -8,7 +8,7 @@ const Map = () => {
     const reduceSize = 10;
 
     const getData = async () => {
-      await axios.get("https://datsanta.dats.team/json/map/faf7ef78-41b3-4a36-8423-688a61929c08.json")
+      await axios.get("https://*********************************************.json")
          .then(data => {
              setData(data.data)
          })
@@ -16,8 +16,9 @@ const Map = () => {
 
     // if(data?.gifts) console.log(sliceGifts(data.gifts));
     // if(data?.gifts) console.log(sortGifts(data.gifts));
-    if(data?.children) console.log(sortChildDist(data.children));
+    // if(data?.children) console.log(sortChildDist(data.children));
     // console.log("checko all child: ", checkAllChildren(data.children, data.snowAreas));
+    
 
     // console.log(checkDistChild({x:317,y:317}, {x:317, y:33}));
 
