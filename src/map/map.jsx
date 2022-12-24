@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { checkAllChildren, sliceGifts } from './utils'
+import { checkAllChildren, sliceGifts, sortChildDist, sortGifts } from './utils'
 
 const Map = () => {
 
@@ -15,9 +15,11 @@ const Map = () => {
     }
 
     // if(data?.gifts) console.log(sliceGifts(data.gifts));
+    // if(data?.gifts) console.log(sortGifts(data.gifts));
+    if(data?.children) console.log(sortChildDist(data.children));
     // console.log("checko all child: ", checkAllChildren(data.children, data.snowAreas));
 
-    
+    // console.log(checkDistChild({x:317,y:317}, {x:317, y:33}));
 
     useEffect(() => {
         getData()
