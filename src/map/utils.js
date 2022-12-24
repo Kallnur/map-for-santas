@@ -55,6 +55,7 @@ export const checkAllChildren = (dataChildren, snowAreas) => {
 
 export const drawZoneInCanvas = ({ctx, x, y, r, fillStyle}) => {
     ctx.fillStyle = fillStyle
+    ctx.beginPath()
     ctx.arc(x, y, r ? r : 1.5, 0, Math.PI*2, true); 
     ctx.fill();
     ctx.closePath();    

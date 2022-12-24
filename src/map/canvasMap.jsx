@@ -27,6 +27,16 @@ const CanvasMap = () => {
           fillStyle: "black"
         })
       })
+
+      data.snowAreas?.forEach(obj => {
+        drawZoneInCanvas({
+          ctx: ctx,
+          x: obj.x / reduceSize,
+          y: obj.y / reduceSize,
+          r: obj.r / reduceSize,
+          fillStyle: "rgba(255, 0, 0, .4)"
+        })
+      })
     }
 
     // if(data?.gifts) console.log(sliceGifts(data.gifts));
