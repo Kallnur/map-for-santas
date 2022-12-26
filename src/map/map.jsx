@@ -20,7 +20,7 @@ const Map = () => {
 
     // if(data?.gifts) console.log(sliceGifts(data.gifts));
     // if(data?.gifts) console.log(sortGifts(data.gifts));
-    // if(data?.children) console.log(sortChildDist(data.children));
+    if(data?.children) console.log(sortChildDist(data.children));
     // console.log("checko all child: ", checkAllChildren(data.children, data.snowAreas));
 
     // console.log(toSliceGifts());
