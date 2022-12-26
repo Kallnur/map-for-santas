@@ -1,25 +1,24 @@
-import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
-import { checkAllChildren, drawZoneInCanvas, sliceGifts } from './utils'
+import { children, snowAreas } from '../../data'
+import { buildRoute } from '../buildRoute'
+import { checkAllChildren, drawMoves, drawRect, drawZoneInCanvas } from './utils'
+import { moves } from './moves'
+import { movesForMap } from '../movesForMap'
+import Form from '../form/form'
+import { wrappSnow } from '../inSnow'
+import { areasWrap } from '../areasWrap'
 
 const CanvasMap = () => {
 
-    const [data, setData] = useState()
+    const [ren, setRen] = useState(false)
     const canvasRef = useRef(null);
     const reduceSize = 10;
-
-    const getData = async () => {
-      await axios.get("(https://********************************************.json")
-         .then(data => {
-             setData(data.data)
-         })
-    }
 
     if(canvasRef.current){
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
 
-      data.children?.forEach(obj => {
+      children?.forEach(obj => {
         drawZoneInCanvas({
           ctx: ctx,
           x: obj.x / reduceSize,
@@ -28,7 +27,7 @@ const CanvasMap = () => {
         })
       })
 
-      data.snowAreas?.forEach(obj => {
+      snowAreas?.forEach(obj => {
         drawZoneInCanvas({
           ctx: ctx,
           x: obj.x / reduceSize,
@@ -37,19 +36,29 @@ const CanvasMap = () => {
           fillStyle: "rgba(255, 0, 0, .4)"
         })
       })
+
+      drawMoves(movesForMap, ctx)
+
+      // drawRect(areasWrap, ctx)
     }
 
-    // if(data?.gifts) console.log(sliceGifts(data.gifts));
-    // console.log("checko all child: ", checkAllChildren(data.children, data.snowAreas));
+    const {moves, moveForMap} = buildRoute()
 
+    console.log("Moves: ", moves);
+    // console.log("Moves for map: ", moveForMap);
 
+    // console.log(wrappSnow());
 
     useEffect(() => {
-        getData()
-    }, []);
+      setRen(true)
+    }, [])
 
   return (
-    <canvas width={1000} height={1000} ref={canvasRef} className='filed'></canvas>
+    <>
+      <canvas width={1000} height={1000} ref={canvasRef} className='filed'></canvas>
+      {/* <Form/> */}
+    </>
+    
   )
 }
 

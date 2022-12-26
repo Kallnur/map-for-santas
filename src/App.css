@@ -27,3 +27,9 @@
   background: red;
   opacity: .4;
 }
+
+.button{
+  padding: 12px 36px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+}
