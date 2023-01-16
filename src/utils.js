@@ -79,46 +79,16 @@ export const obhodSnowIn = (nextPos, snowId) => {
 export const checkLine = (currStep, nextStep) => {
     const copyCurr = {...currStep};
     const obhod = [];
-    if(copyCurr.x < nextStep.x || copyCurr.y < nextStep.y ){
-        while(copyCurr.x >= nextStep.x && copyCurr.y >= nextStep.y){
-            const snowId = checkChildToInSnow(copyCurr);
-            if(snowId) isInSnow()
-            else{
-                if(copyCurr.x <= nextStep.x) copyCurr.x += 30;
-                if(copyCurr.y <= nextStep.y) copyCurr.y += 30;
-            }
-        }
-    }
-    else if(copyCurr.x > nextStep.x || copyCurr.y > nextStep.y ){
-        while(copyCurr.x <= nextStep.x && copyCurr.y <= nextStep.y){
-            const snowId = checkChildToInSnow(copyCurr);
-            if(snowId) isInSnow()
-            else{
-                if(copyCurr.x > nextStep.x) copyCurr.x -= 30;
-                if(copyCurr.y > nextStep.y) copyCurr.y -= 30;
-            }
-        }
-    }
-    else if(copyCurr.x > nextStep.x && copyCurr.y < nextStep.y ){
-        while(copyCurr.x <= nextStep.x || copyCurr.y <= nextStep.y){
-            const snowId = checkChildToInSnow(copyCurr);
-            if(snowId) isInSnow()
-            else{
-                if(copyCurr.x > nextStep.x )copyCurr.x -= 30;
-                if(copyCurr.y < nextStep.y )copyCurr.y += 30;
-            }
-        }
-    }
-    else if(copyCurr.x < nextStep.x && copyCurr.y > nextStep.y ){
-        while(copyCurr.x >= nextStep.x || copyCurr.y <= nextStep.y){
-            const snowId = checkChildToInSnow(copyCurr);
-            if(snowId) isInSnow() 
-            else{
-                if(copyCurr.x < nextStep.x)copyCurr.x += 30;
-                if(copyCurr.y > nextStep.y)copyCurr.y -= 30;
-            }
-        }
-    }
+    // if(copyCurr.x < nextStep.x || copyCurr.y < nextStep.y ){
+    //     while(copyCurr.x >= nextStep.x && copyCurr.y >= nextStep.y){
+    //         const snowId = checkChildToInSnow(copyCurr);
+    //         if(snowId) isInSnow()
+    //         else{
+    //             if(copyCurr.x <= nextStep.x) copyCurr.x += 30;
+    //             if(copyCurr.y <= nextStep.y) copyCurr.y += 30;
+    //         }
+    //     }
+    // }
 
     function isInSnow (){
         const nextStep = searchPath(copyCurr, snowId)
