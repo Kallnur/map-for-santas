@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import './App.css'
-import BuyGifts from './buyGifForChildren'
+// import BuyGifts from './buyGifForChildren'
 import CanvasMap from './map/canvasMap'
-import Map from './map/map'
+// import Map from './map/map'
 
 function App() {
 
   return (
     <div className="App">
       {/* <Map/> */}
-      {/* <CanvasMap/> */}
+      <CanvasMap/>
       {/* <BuyGifts /> */}
     </div>
   )

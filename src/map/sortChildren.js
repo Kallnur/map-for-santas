@@ -1,33 +1,33 @@
+import { children } from "../children";
+export const sortChildDist = () => {
+    const resMap = children.map((obj) => {
+        const len = Math.sqrt(Math.pow(obj.x, 2) + Math.pow(obj.y, 2));
+        return {obj, len}
+    });
 
-// export const sortChildDist = () => {
-//     const resMap = children.map((obj) => {
-//         const len = Math.sqrt(Math.pow(obj.x, 2) + Math.pow(obj.y, 2));
-//         return {obj, len}
-//     });
-
-//     resMap.sort((a, b) => a.len - b.len)
+    resMap.sort((a, b) => a.len - b.len)
     
-//     return resMap.map(item => item.obj)
-// }
+    return resMap.map(item => item.obj)
+}
 
-// export const sortChildByY = () => {
-//     // const resMap = children.map(obj => {
+export const sortChildByY = () => {
+    // const resMap = children.map(obj => {
         
-//     //     return {obj, len}
-//     // });
+    //     return {obj, len}
+    // });
 
-//     children.sort((a, b) => a.y - b.y)
+    children.sort((a, b) => a.y - b.y)
     
-//     return children
-// }
+    return children
+}
 
-// export const sortChildByX = () => {
-//     // const resMap = children.map(obj => {
+export const sortChildByX = () => {
+    // const resMap = children.map(obj => {
         
-//     //     return {obj, len}
-//     // });
+    //     return {obj, len}
+    // });
 
-//     children.sort((a, b) => a.x - b.x)
+    children.sort((a, b) => a.x - b.x)
     
-//     return children
-// }
+    return children
+}

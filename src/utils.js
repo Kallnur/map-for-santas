@@ -1,164 +1,137 @@
-// import { check_a_point } from "./map/utils";
-// import { snowAreas } from "./snowAreas";
-// import { areasWrap } from "./areasWrap";
+import { check_a_point } from "./map/utils";
+import { snowAreas } from "./snowAreas";
+import { areasWrap } from "./areasWrap";
 
-// export const checkChildToInSnow = (child) => {
-//     let snowId = false;
-//     if(child){
-//         snowAreas.forEach((snow, i) => {
-//             const bool = check_a_point(child.x, child.y, snow.x, snow.y, snow.r)
-//             if(bool) snowId = i + 1;
-//         })
-//     }
+export const checkChildToInSnow = (child) => {
+    let snowId = false;
+    if(child){
+        snowAreas.forEach((snow, i) => {
+            const bool = check_a_point(child.x, child.y, snow.x, snow.y, snow.r)
+            if(bool) snowId = i + 1;
+        })
+    }
 
-//     return snowId
-// }
+    return snowId
+}
 
-// const sqr = function(x) { return x * x; };
+const sqr = function(x) { return x * x; };
 
-// export const searchPath = (child, snowId) => {
-//     const areaWrap = areasWrap.find(obj => obj.id ? obj.id === snowId : false);
-//     let target = null;
-//     let len = null;
+export const searchPath = (child, snowId) => {
+    const areaWrap = areasWrap.find(obj => obj.id ? obj.id === snowId : false);
+    let target = null;
+    let len = null;
 
-//     if(areaWrap) {
-//         for(let i = 0; i < areaWrap.arr.length; i++) {
-//             const thisLen = sqr(areaWrap.arr[i].x - child.x) + sqr(areaWrap.arr[i].y - child.y);
-//             if(areaWrap.arr[i].x > 9990 || areaWrap.arr[i].y > 9990 || areaWrap.arr[i].y < 1 || areaWrap.arr[i].x < 1 ) continue
-//             if(len === null || len > thisLen) {
-//                 len = thisLen;
-//                 target = areaWrap.arr[i]
-//             }
-//         }
-//     }
+    if(areaWrap) {
+        for(let i = 0; i < areaWrap.arr.length; i++) {
+            const thisLen = sqr(areaWrap.arr[i].x - child.x) + sqr(areaWrap.arr[i].y - child.y);
+            if(areaWrap.arr[i].x > 9990 || areaWrap.arr[i].y > 9990 || areaWrap.arr[i].y < 1 || areaWrap.arr[i].x < 1 ) continue
+            if(len === null || len > thisLen) {
+                len = thisLen;
+                target = areaWrap.arr[i]
+            }
+        }
+    }
 
-//     if(target) {
-//         target.x = Math.floor(target.x)
-//         target.y = Math.floor(target.y)
-//         return target
-//     }
-//     return child
-// }
+    if(target) {
+        target.x = Math.floor(target.x)
+        target.y = Math.floor(target.y)
+        return target
+    }
+    return child
+}
 
-// export const obhodSnowIn = (nextPos, snowId) => {
-//     const areaWrap = areasWrap.find(obj => obj.id ? obj.id === snowId : false);
-//     let target = null;
-//     let len = null;
-//     const path = [];
+export const obhodSnowIn = (nextPos, snowId) => {
+    const areaWrap = areasWrap.find(obj => obj.id ? obj.id === snowId : false);
+    let target = null;
+    let len = null;
+    const path = [];
 
-//     // console.log("in obhod");
+    // console.log("in obhod");
 
-//     if(areaWrap) {
-//         for(let i = 0; i < areaWrap.arr.length; i++) {
-//             const thisLen = sqr(areaWrap.arr[i].x - nextPos.x) + sqr(areaWrap.arr[i].y - nextPos.y);
-//             if(areaWrap.arr[i].x > 9990 || areaWrap.arr[i].y > 9990 || areaWrap.arr[i].y < 1 || areaWrap.arr[i].x < 1 ) continue
-//             if(len === null || len > thisLen) {
-//                 len = thisLen;
-//                 target = areaWrap.arr[i]
-//             }
-//         }
-//     }
+    if(areaWrap) {
+        for(let i = 0; i < areaWrap.arr.length; i++) {
+            const thisLen = sqr(areaWrap.arr[i].x - nextPos.x) + sqr(areaWrap.arr[i].y - nextPos.y);
+            if(areaWrap.arr[i].x > 9990 || areaWrap.arr[i].y > 9990 || areaWrap.arr[i].y < 1 || areaWrap.arr[i].x < 1 ) continue
+            if(len === null || len > thisLen) {
+                len = thisLen;
+                target = areaWrap.arr[i]
+            }
+        }
+    }
 
-//     if(target) {
-//         target.x = Math.floor(target.x)
-//         target.y = Math.floor(target.y)
-//     }
-//     if(target) {
-//         areaWrap.arr.forEach((obj, i) => {
-//             if(obj.x != target.x && obj.y != target.y) {
-//                 path.push(obj)
-//             } else {
-//                 path.push(target)
-//             }
-//         })
-//     }
+    if(target) {
+        target.x = Math.floor(target.x)
+        target.y = Math.floor(target.y)
+    }
+    if(target) {
+        areaWrap.arr.forEach((obj, i) => {
+            if(obj.x != target.x && obj.y != target.y) {
+                path.push(obj)
+            } else {
+                path.push(target)
+            }
+        })
+    }
 
-//     return path
-// }
+    return path
+}
 
-// export const checkLine = (currStep, nextStep) => {
-//     const copyCurr = {...currStep};
-//     const obhod = [];
-//     if(copyCurr.x < nextStep.x || copyCurr.y < nextStep.y ){
-//         while(copyCurr.x <= nextStep.x && copyCurr.y <= nextStep.y){
-//             const snowId = checkChildToInSnow(copyCurr);
-//             if(snowId) {
-//                 const nextStep = searchPath(copyCurr, snowId)
-//                 obhod.push(nextStep);
+export const checkLine = (currStep, nextStep) => {
+    const copyCurr = {...currStep};
+    const obhod = [];
+    if(copyCurr.x < nextStep.x || copyCurr.y < nextStep.y ){
+        while(copyCurr.x >= nextStep.x && copyCurr.y >= nextStep.y){
+            const snowId = checkChildToInSnow(copyCurr);
+            if(snowId) isInSnow()
+            else{
+                if(copyCurr.x <= nextStep.x) copyCurr.x += 30;
+                if(copyCurr.y <= nextStep.y) copyCurr.y += 30;
+            }
+        }
+    }
+    else if(copyCurr.x > nextStep.x || copyCurr.y > nextStep.y ){
+        while(copyCurr.x <= nextStep.x && copyCurr.y <= nextStep.y){
+            const snowId = checkChildToInSnow(copyCurr);
+            if(snowId) isInSnow()
+            else{
+                if(copyCurr.x > nextStep.x) copyCurr.x -= 30;
+                if(copyCurr.y > nextStep.y) copyCurr.y -= 30;
+            }
+        }
+    }
+    else if(copyCurr.x > nextStep.x && copyCurr.y < nextStep.y ){
+        while(copyCurr.x <= nextStep.x || copyCurr.y <= nextStep.y){
+            const snowId = checkChildToInSnow(copyCurr);
+            if(snowId) isInSnow()
+            else{
+                if(copyCurr.x > nextStep.x )copyCurr.x -= 30;
+                if(copyCurr.y < nextStep.y )copyCurr.y += 30;
+            }
+        }
+    }
+    else if(copyCurr.x < nextStep.x && copyCurr.y > nextStep.y ){
+        while(copyCurr.x >= nextStep.x || copyCurr.y <= nextStep.y){
+            const snowId = checkChildToInSnow(copyCurr);
+            if(snowId) isInSnow() 
+            else{
+                if(copyCurr.x < nextStep.x)copyCurr.x += 30;
+                if(copyCurr.y > nextStep.y)copyCurr.y -= 30;
+            }
+        }
+    }
 
-//                 const path = obhodSnowIn(nextStep, snowId)
-//                 const lastCheck = path.pop();
+    function isInSnow (){
+        const nextStep = searchPath(copyCurr, snowId)
+        obhod.push(nextStep);
 
-//                 if(path.length) obhod.push(...path)
+        const path = obhodSnowIn(nextStep, snowId)
+        const lastCheck = path[path.length - 1];
 
-//                 copyCurr.x = lastCheck.x;
-//                 copyCurr.y = lastCheck.y;
-//             } else{
-//                 if(copyCurr.x <= nextStep.x) copyCurr.x += 30;
-//                 if(copyCurr.y <= nextStep.y) copyCurr.y += 30;
-//             }
-//         }
-//     }
-//     else if(copyCurr.x > nextStep.x || copyCurr.y > nextStep.y ){
-//         while(copyCurr.x >= nextStep.x && copyCurr.y >= nextStep.y){
-//             const snowId = checkChildToInSnow(copyCurr);
-//             if(snowId) {
-//                 const nextStep = searchPath(copyCurr, snowId)
-//                 obhod.push(nextStep);
+        if(path.length) obhod.push(...path)
 
-//                 const path = obhodSnowIn(nextStep, snowId)
-//                 const lastCheck = path.pop();
+        copyCurr.x = lastCheck.x;
+        copyCurr.y = lastCheck.y;
+    }
 
-//                 if(path.length) obhod.push(...path)
-
-//                 copyCurr.x = lastCheck.x;
-//                 copyCurr.y = lastCheck.y;
-//             } else{
-//                 if(copyCurr.x > nextStep.x) copyCurr.x -= 30;
-//                 if(copyCurr.y > nextStep.y) copyCurr.y -= 30;
-//             }
-//         }
-//     }
-//     else if(copyCurr.x > nextStep.x && copyCurr.y < nextStep.y ){
-//         while(copyCurr.x >= nextStep.x || copyCurr.y >= nextStep.y){
-//             const snowId = checkChildToInSnow(copyCurr);
-//             if(snowId) {
-//                 const nextStep = searchPath(copyCurr, snowId)
-//                 obhod.push(nextStep);
-
-//                 const path = obhodSnowIn(nextStep, snowId)
-//                 const lastCheck = path.pop();
-
-//                 if(path.length) obhod.push(...path)
-
-//                 copyCurr.x = lastCheck.x;
-//                 copyCurr.y = lastCheck.y;
-//             } else{
-//                 if(copyCurr.x > nextStep.x )copyCurr.x -= 30;
-//                 if(copyCurr.y < nextStep.y )copyCurr.y += 30;
-//             }
-//         }
-//     }
-//     else if(copyCurr.x < nextStep.x && copyCurr.y > nextStep.y ){
-//         while(copyCurr.x <= nextStep.x || copyCurr.y >= nextStep.y){
-//             const snowId = checkChildToInSnow(copyCurr);
-//             if(snowId) {
-//                 const nextStep = searchPath(copyCurr, snowId)
-//                 obhod.push(nextStep);
-
-//                 const path = obhodSnowIn(nextStep, snowId)
-//                 const lastCheck = path[path.length - 1];
-
-//                 if(path.length) obhod.push(...path)
-
-//                 copyCurr.x = lastCheck.x;
-//                 copyCurr.y = lastCheck.y;
-//             } else{
-//                 if(copyCurr.x < nextStep.x)copyCurr.x += 30;
-//                 if(copyCurr.y > nextStep.y)copyCurr.y -= 30;
-//             }
-//         }
-//     }
-
-//     return obhod;
-// }
+    return obhod;
+}
